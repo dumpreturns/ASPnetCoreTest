@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using WebTest.Models;
+using WebTest.Data;
 
 namespace WebTest
 {
@@ -39,14 +40,18 @@ namespace WebTest
             services.AddDbContext<WebTestContext>(options =>
                     options.UseMySql(Configuration.GetConnectionString("WebTestContext"), builder => 
                     builder.MigrationsAssembly("WebTest")));
+
+            //registra o servico no sistema de injecao de dependencia
+            services.AddScoped<SeedingService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, SeedingService seedingService)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                seedingService.Seed();
             }
             else
             {
