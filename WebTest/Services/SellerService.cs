@@ -36,9 +36,16 @@ namespace WebTest.Services
         }
         public async Task RemoveAsync(int id)
         {
-            var obj = await _context.Seller.FindAsync(id);
-            _context.Seller.Remove(obj);
-            await _context.SaveChangesAsync(); //remocao de seller
+            try
+            {
+                var obj = await _context.Seller.FindAsync(id);
+                _context.Seller.Remove(obj);
+                await _context.SaveChangesAsync(); //remocao de seller
+            }
+            catch (DbUpdateException e)
+            {
+                throw new IntegrityException("Seller has sales");
+            }
         }
 
         public async Task UpdateAsync (Seller obj)
