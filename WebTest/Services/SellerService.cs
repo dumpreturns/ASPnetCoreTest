@@ -21,5 +21,11 @@ namespace WebTest.Services
             //acessa a fonte de dados de Vendedores
             //e converte para uma lista
         }
+
+        public void Insert(Seller obj)
+        {
+            _context.Add(obj);
+            _context.SaveChanges();
+        }
     }
 }
