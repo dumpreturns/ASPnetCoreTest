@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using WebTest.Models;
+using WebTest.Models.ViewModels;
 
 namespace WebTest.Controllers
 {
@@ -17,8 +17,8 @@ namespace WebTest.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
-
+            ViewData["Message"] = "Teste .NETCORE MVC APP";
+            ViewData["Autor"] = "Pedro Oliveira";
             return View();
         }
 

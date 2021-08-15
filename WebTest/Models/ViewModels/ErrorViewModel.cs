@@ -1,6 +1,6 @@
 using System;
 
-namespace WebTest.Models
+namespace WebTest.Models.ViewModels
 {
     public class ErrorViewModel
     {
